@@ -1,0 +1,29 @@
+{
+    "name": "romanzipp/laravel-env-diff",
+    "description": "Create a visual Diff of .env and .env.example files",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "romanzipp",
+            "email": "ich@ich.wtf",
+            "homepage": "https://ich.wtf"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "laravel/framework": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "romanzipp\\EnvDiff\\": "/src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "romanzipp\\EnvDiff\\Providers\\EnvDiffProvider"
+            ]
+        }
+    }
+}
