@@ -69,6 +69,7 @@ class DiffEnvFiles extends Command
 
     /**
      * Iterate through env varaibles and show results
+     *
      * @param  array  $data
      * @param  array  $comparingData
      * @param  string $file
@@ -95,6 +96,7 @@ class DiffEnvFiles extends Command
 
     /**
      * Get splitted contents of environment files
+     *
      * @param  string $file Env file name
      * @return array
      */
