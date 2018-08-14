@@ -18,15 +18,15 @@ Or add `romanzipp/laravel-env-diff` to your `composer.json`
 "romanzipp/laravel-env-diff": "*"
 ```
 
-Run composer update to pull the latest version.
+Run `composer update` to pull the latest version.
 
 **If you use Laravel 5.5+ you are already done, otherwise continue:**
+
+Add Service Provider to your `app.php` configuration file:
 
 ```php
 romanzipp\EnvDiff\Providers\EnvDiffProvider::class,
 ```
-
-Add Service Provider to your app.php configuration file:
 
 ## Configuration
 
