@@ -15,7 +15,7 @@ class EnvDiffProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            dirname(__DIR__) . '/../env-diff.php' => config_path('env-diff.php'),
+            dirname(__DIR__) . '/../config/env-diff.php' => config_path('env-diff.php'),
         ], 'config');
 
         if ($this->app->runningInConsole()) {
@@ -33,7 +33,7 @@ class EnvDiffProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/../env-diff.php', 'env-diff'
+            dirname(__DIR__) . '/../config/env-diff.php', 'env-diff'
         );
     }
 }
