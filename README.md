@@ -33,7 +33,7 @@ romanzipp\EnvDiff\Providers\EnvDiffProvider::class,
 Copy configuration to config folder:
 
 ```
-$ php artisan vendor:publish --provider=romanzipp\EnvDiff\Providers\EnvDiffProvider
+$ php artisan vendor:publish --provider="romanzipp\EnvDiff\Providers\EnvDiffProvider"
 ```
 
 ```php
