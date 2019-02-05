@@ -15,7 +15,7 @@ composer require romanzipp/laravel-env-diff
 Or add `romanzipp/laravel-env-diff` to your `composer.json`
 
 ```
-"romanzipp/laravel-env-diff": "*"
+"romanzipp/laravel-env-diff": "^1.0"
 ```
 
 Run `composer update` to pull the latest version.
@@ -51,3 +51,11 @@ return [
     'reverse_example_check' => true,
 ];
 ```
+
+## Usage
+
+```
+$ php artisan diff:env
+```
+
+![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Env-Diff/master/preview.png)

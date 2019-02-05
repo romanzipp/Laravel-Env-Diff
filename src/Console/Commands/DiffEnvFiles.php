@@ -45,7 +45,7 @@ class DiffEnvFiles extends Command
 
         foreach ($comparingFiles as $file) {
 
-            $file = is_null($file) ? '.env' : $file;
+            $file = null === $file ? '.env' : $file;
 
             $this->info('');
             $this->info('Comparing environment file: ' . $file);
@@ -59,7 +59,7 @@ class DiffEnvFiles extends Command
 
             $this->iterateAndEcho($exampleData, $data, $file);
 
-            if (!config('env-diff.reverse_example_check')) {
+            if ( ! config('env-diff.reverse_example_check')) {
                 continue;
             }
 
@@ -79,13 +79,13 @@ class DiffEnvFiles extends Command
     {
         foreach ($data as $line) {
 
-            if (!preg_match(self::REGEX, $line, $match)) {
+            if ( ! preg_match(self::REGEX, $line, $match)) {
                 continue;
             }
 
             $variable = $match[1];
 
-            if (!$this->variableExists($variable, $comparingData)) {
+            if ( ! $this->variableExists($variable, $comparingData)) {
 
                 $dots = str_repeat('.', 20 - strlen($file));
 
@@ -97,7 +97,7 @@ class DiffEnvFiles extends Command
     /**
      * Get splitted contents of environment files
      *
-     * @param  string $file Env file name
+     * @param  string  $file Env file name
      * @return array
      */
     protected function getEnvContents(string $file):  ? array
@@ -106,6 +106,7 @@ class DiffEnvFiles extends Command
 
         if ($content === false) {
             $this->error('Environment file not found: ' . $file);
+
             return null;
         }
 
@@ -119,8 +120,8 @@ class DiffEnvFiles extends Command
     /**
      * Determine if a variable exists
      *
-     * @param  string $variable Variable name
-     * @param  array  $envData  Environment data
+     * @param  string    $variable Variable name
+     * @param  array     $envData  Environment data
      * @return boolean
      */
     protected function variableExists(string $variable, array $envData) : bool
