@@ -12,15 +12,7 @@ Create a visual Diff of .env and .env.example files
 composer require romanzipp/laravel-env-diff
 ```
 
-Or add `romanzipp/laravel-env-diff` to your `composer.json`
-
-```
-"romanzipp/laravel-env-diff": "^1.0"
-```
-
-Run `composer update` to pull the latest version.
-
-**If you use Laravel 5.5+ you are already done, otherwise continue:**
+**If you use Laravel 5.5+ you are already done, otherwise continue.**
 
 Add Service Provider to your `app.php` configuration file:
 
