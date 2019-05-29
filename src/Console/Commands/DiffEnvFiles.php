@@ -43,8 +43,6 @@ class DiffEnvFiles extends Command
         $service = new DiffService;
         $service->add($files);
 
-        $table = $service->buildTable();
-
-        $table->display();
+        $service->displayTable();
     }
 }
