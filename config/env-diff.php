@@ -5,7 +5,9 @@ return [
      * Additional .env files which will be compared to the example
      * entries, like .env.test
      */
-    'additional_files' => [],
+    'additional_files' => [
+        '.env.example',
+    ],
 
     /**
      * User colors when printing console output
