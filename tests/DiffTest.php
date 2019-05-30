@@ -29,6 +29,8 @@ class DiffTest extends TestCase
 
     public function testSingleFileSingleVariable()
     {
+        config(['env-diff.hide_existing' => false]);
+
         $service = new DiffService;
 
         $service->setData('.env', [
@@ -44,6 +46,8 @@ class DiffTest extends TestCase
 
     public function testSingleFileMultipleVariables()
     {
+        config(['env-diff.hide_existing' => false]);
+
         $service = new DiffService;
 
         $service->setData('.env', [
@@ -57,26 +61,6 @@ class DiffTest extends TestCase
             ],
             'BAR' => [
                 '.env' => true,
-            ],
-        ], $service->diff());
-    }
-
-    public function testMultipleFilesAllExisting()
-    {
-        $service = new DiffService;
-
-        $service->setData('.env', [
-            'FOO' => 'bar',
-        ]);
-
-        $service->setData('.env.testing', [
-            'FOO' => 'bar',
-        ]);
-
-        $this->assertEquals([
-            'FOO' => [
-                '.env'         => true,
-                '.env.testing' => true,
             ],
         ], $service->diff());
     }
@@ -118,6 +102,54 @@ class DiffTest extends TestCase
             ],
             'BAR' => [
                 '.env'         => false,
+                '.env.testing' => true,
+            ],
+        ], $service->diff());
+    }
+
+    public function testMultipleFilesAllExisting()
+    {
+        $service = new DiffService;
+
+        $service->setData('.env', [
+            'NOPE' => true,
+            'FOO'  => 'bar',
+        ]);
+
+        $service->setData('.env.testing', [
+            'FOO' => 'foo',
+        ]);
+
+        $this->assertEquals([
+            'NOPE' => [
+                '.env'         => true,
+                '.env.testing' => false,
+            ],
+        ], $service->diff());
+    }
+
+    public function testMultipleFilesAllExistingDisabledUnique()
+    {
+        config(['env-diff.hide_existing' => false]);
+
+        $service = new DiffService;
+
+        $service->setData('.env', [
+            'NOPE' => true,
+            'FOO'  => 'bar',
+        ]);
+
+        $service->setData('.env.testing', [
+            'FOO' => 'foo',
+        ]);
+
+        $this->assertEquals([
+            'NOPE' => [
+                '.env'         => true,
+                '.env.testing' => false,
+            ],
+            'FOO'  => [
+                '.env'         => true,
                 '.env.testing' => true,
             ],
         ], $service->diff());

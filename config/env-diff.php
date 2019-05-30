@@ -11,4 +11,9 @@ return [
      * User colors when printing console output
      */
     'use_colors'       => true,
+
+    /**
+     * Hide variables that exist in all .env files
+     */
+    'hide_existing'    => true,
 ];

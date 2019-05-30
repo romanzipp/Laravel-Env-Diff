@@ -90,6 +90,8 @@ class DiffService
             }
         }
 
+        $hideExisting = config('env-diff.hide_existing');
+
         $diff = [];
 
         foreach ($variables as $variable) {
@@ -98,6 +100,15 @@ class DiffService
 
             foreach ($this->data as $file => $vars) {
                 $containing[$file] = array_key_exists($variable, $vars);
+            }
+
+            if ($hideExisting) {
+
+                $unique = array_unique(array_values($containing));
+
+                if (count($unique) == 1 && $unique[0] === true) {
+                    continue;
+                }
             }
 
             $diff[$variable] = $containing;
@@ -159,7 +170,7 @@ class DiffService
      */
     private function valueOkay(): string
     {
-        return config('diff-env.use_colors') ? (new Colors)->getColoredString('y', 'green') : 'y';
+        return config('env-diff.use_colors') ? (new Colors)->getColoredString('y', 'green') : 'y';
     }
 
     /**
@@ -169,6 +180,6 @@ class DiffService
      */
     private function valueNotFound(): string
     {
-        return config('diff-env.use_colors') ? (new Colors)->getColoredString('n', 'red') : 'n';
+        return config('env-diff.use_colors') ? (new Colors)->getColoredString('n', 'red') : 'n';
     }
 }
