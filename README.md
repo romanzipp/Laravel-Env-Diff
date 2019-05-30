@@ -38,11 +38,16 @@ return [
     'additional_files' => [],
 
     /**
-     * Check and warn for variables that exist in .env but not in
-     * .env.example files
+     * User colors when printing console output
      */
-    'reverse_example_check' => true,
+    'use_colors'       => true,
+
+    /**
+     * Hide variables that exist in all .env files
+     */
+    'hide_existing'    => true,
 ];
+
 ```
 
 ## Usage
