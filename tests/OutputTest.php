@@ -7,10 +7,15 @@ use romanzipp\EnvDiff\Tests\TestCases\TestCase;
 
 class OutputTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        config(['env-diff.use_colors' => false]);
+    }
+
     public function testSimpleOutput()
     {
-        config(['env-diff.use_colors' => false]);
-
         $expect = implode(PHP_EOL, [
             '+----------+------+--------------+',
             '| Variable | .env | .env.missing |',
@@ -36,10 +41,7 @@ class OutputTest extends TestCase
 
     public function testValueOutput()
     {
-        config([
-            'env-diff.use_colors'  => false,
-            'env-diff.show_values' => true,
-        ]);
+        config(['env-diff.show_values' => true]);
 
         $expect = implode(PHP_EOL, [
             '+----------+------+--------------+',
