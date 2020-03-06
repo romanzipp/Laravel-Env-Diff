@@ -2,25 +2,30 @@
 
 return [
     /*
-     * Additional .env files which will be compared to the example
-     * entries, like .env.test
+     * Specify all environment files that should be compared.
      */
-    'additional_files' => [
+    'files'         => [
+        '.env',
         '.env.example',
     ],
 
     /*
-     * User colors when printing console output
+     * The base path to look for environment files.
      */
-    'use_colors'       => true,
+    'path'          => app_path(),
 
     /*
-     * Hide variables that exist in all .env files
+     * User colors when printing console output.
      */
-    'hide_existing'    => true,
+    'use_colors'    => true,
+
+    /*
+     * Hide variables that exist in all .env files.
+     */
+    'hide_existing' => true,
 
     /*
      * Show existing env values instead of y/n.
      */
-    'show_values'      => false,
+    'show_values'   => false,
 ];

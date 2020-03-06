@@ -28,7 +28,7 @@ class DiffEnvFiles extends Command
      */
     public function handle()
     {
-        $files = array_merge(['.env'], config('env-diff.additional_files'));
+        $files = config('env-diff.files') ?? ['.env'];
 
         $service = new DiffService;
         $service->add($files);
