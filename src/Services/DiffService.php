@@ -59,7 +59,7 @@ class DiffService
      */
     private function getPath(): string
     {
-        return $this->config['path'] ?? app_path();
+        return $this->config['path'] ?? base_path();
     }
 
     /**

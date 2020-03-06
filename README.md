@@ -42,7 +42,7 @@ return [
     /*
      * The base path to look for environment files.
      */
-    'path'          => app_path(),
+    'path'          => base_path(),
 
     /*
      * User colors when printing console output.
