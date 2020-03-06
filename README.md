@@ -32,22 +32,32 @@ $ php artisan vendor:publish --provider="romanzipp\EnvDiff\Providers\EnvDiffProv
 ```php
 return [
     /*
-     * Additional .env files which will be compared to the example
-     * entries, like .env.test
+     * Specify all environment files that should be compared.
      */
-    'additional_files' => [
+    'files'         => [
+        '.env',
         '.env.example',
     ],
 
     /*
-     * User colors when printing console output
+     * The base path to look for environment files.
      */
-    'use_colors'       => true,
+    'path'          => app_path(),
 
     /*
-     * Hide variables that exist in all .env files
+     * User colors when printing console output.
      */
-    'hide_existing'    => true,
+    'use_colors'    => true,
+
+    /*
+     * Hide variables that exist in all .env files.
+     */
+    'hide_existing' => true,
+
+    /*
+     * Show existing env values instead of y/n.
+     */
+    'show_values'   => false,
 ];
 ```
 
@@ -55,9 +65,23 @@ return [
 
 ```
 $ php artisan diff:env
+              {files? : Specify environment files, overriding config}
+              {--values : Display existing environment values}';
 ```
 
-![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Env-Diff/master/preview.png)
+## Example
+
+```
+$ php artisan diff:env .env,.env.second
+```
+
+![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Env-Diff/master/preview-default.png)
+
+```
+$ php artisan diff:env .env,.env.second --values
+```
+
+![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Env-Diff/master/preview-values.png)
 
 ## Testing
 
