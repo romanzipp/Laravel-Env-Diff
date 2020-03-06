@@ -29,9 +29,17 @@ class DiffService
      */
     private $path;
 
+    /**
+     * Package configuration.
+     *
+     * @var array
+     */
+    public $config;
+
     public function __construct(string $path = null)
     {
         $this->path = $path;
+        $this->config = config('env-diff');
     }
 
     /**
@@ -99,7 +107,7 @@ class DiffService
             }
         }
 
-        $hideExisting = config('env-diff.hide_existing');
+        $hideExisting = $this->config['hide_existing'] ?? true;
 
         $diff = [];
 
@@ -148,7 +156,7 @@ class DiffService
 
         $this->table->setHeaders($headers);
 
-        $showValues = config('env-diff.show_values');
+        $showValues = $this->config['show_values'] ?? false;
 
         foreach ($this->diff() as $variable => $containing) {
 
@@ -225,7 +233,7 @@ class DiffService
      */
     private function getColoredString(string $string, string $color): string
     {
-        if ( ! config('env-diff.use_colors')) {
+        if ( ! $this->config['use_colors']) {
             return $string;
         }
 
