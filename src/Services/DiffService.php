@@ -55,7 +55,7 @@ class DiffService
      * Manually set variable data corresponsing to file name.
      *
      * @param string $file
-     * @param array  $data
+     * @param array $data
      */
     public function setData(string $file, array $data): void
     {
@@ -65,7 +65,7 @@ class DiffService
     /**
      * Get data.
      *
-     * @param  string|null $file
+     * @param string|null $file
      * @return array
      */
     public function getData(string $file = null): array
