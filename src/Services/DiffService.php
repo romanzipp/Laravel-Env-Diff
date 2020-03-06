@@ -53,7 +53,7 @@ class DiffService
     }
 
     /**
-     * Manually set variable data corresponsing to file name.
+     * Manually set variable data corresponding to file name.
      *
      * @param string $file
      * @param array $data
@@ -84,10 +84,14 @@ class DiffService
         $variables = [];
 
         foreach ($this->data as $file => $vars) {
+
             foreach ($vars as $key => $value) {
-                if ( ! in_array($key, $variables)) {
-                    $variables[] = $key;
+
+                if (in_array($key, $variables, false)) {
+                    continue;
                 }
+
+                $variables[] = $key;
             }
         }
 
@@ -107,7 +111,7 @@ class DiffService
 
                 $unique = array_unique(array_values($containing));
 
-                if (count($unique) == 1 && $unique[0] === true) {
+                if (count($unique) === 1 && $unique[0] === true) {
                     continue;
                 }
             }
@@ -145,7 +149,7 @@ class DiffService
             $row = [$variable];
 
             foreach ($files as $file) {
-                $row[] = $containing[$file] == true ? $this->valueOkay() : $this->valueNotFound();
+                $row[] = $containing[$file] === true ? $this->valueOkay() : $this->valueNotFound();
             }
 
             $this->table->addRow($row);
@@ -171,7 +175,11 @@ class DiffService
      */
     private function valueOkay(): string
     {
-        return config('env-diff.use_colors') ? (new Colors)->getColoredString('y', 'green') : 'y';
+        if ( ! config('env-diff.use_colors')) {
+            return 'y';
+        }
+
+        (new Colors)->getColoredString('y', 'green');
     }
 
     /**
@@ -181,6 +189,10 @@ class DiffService
      */
     private function valueNotFound(): string
     {
-        return config('env-diff.use_colors') ? (new Colors)->getColoredString('n', 'red') : 'n';
+        if ( ! config('env-diff.use_colors')) {
+            return 'n';
+        }
+
+        (new Colors)->getColoredString('n', 'red');
     }
 }
