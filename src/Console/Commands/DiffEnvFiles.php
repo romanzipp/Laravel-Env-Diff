@@ -12,7 +12,7 @@ class DiffEnvFiles extends Command
      *
      * @var string
      */
-    protected $signature = 'diff:env';
+    protected $signature = 'diff:env {files?} {--values : Display existing environment values}';
 
     /**
      * The console command description.
@@ -28,9 +28,18 @@ class DiffEnvFiles extends Command
      */
     public function handle()
     {
-        $files = config('env-diff.files') ?? ['.env'];
+        $files = config('env-diff.files') ?: ['.env'];
+
+        if ($overrideFiles = $this->argument('files')) {
+            $files = explode(',', $overrideFiles);
+        }
 
         $service = new DiffService;
+
+        if ($this->option('values') === true) {
+            $service->config['show_values'] = true;
+        }
+
         $service->add($files);
 
         $service->displayTable();
