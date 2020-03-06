@@ -7,7 +7,7 @@ use romanzipp\EnvDiff\Tests\TestCases\TestCase;
 
 class OutputTest extends TestCase
 {
-    public function testComparisonSingleMissing()
+    public function testSimpleOutput()
     {
         config(['env-diff.use_colors' => false]);
 
@@ -15,7 +15,37 @@ class OutputTest extends TestCase
             '+----------+------+--------------+',
             '| Variable | .env | .env.missing |',
             '+----------+------+--------------+',
-            '| FOO      | y    | n            |',
+            '| FOO      | Y    | N            |',
+            '+----------+------+--------------+',
+        ]);
+
+        $expect .= PHP_EOL;
+
+        $this->expectOutputString($expect);
+
+        $service = new DiffService;
+
+        $service->setData('.env', [
+            'FOO' => 'bar',
+        ]);
+
+        $service->setData('.env.missing', []);
+
+        $service->displayTable();
+    }
+
+    public function testValueOutput()
+    {
+        config([
+            'env-diff.use_colors'  => false,
+            'env-diff.show_values' => true,
+        ]);
+
+        $expect = implode(PHP_EOL, [
+            '+----------+------+--------------+',
+            '| Variable | .env | .env.missing |',
+            '+----------+------+--------------+',
+            '| FOO      | bar  | MISSING      |',
             '+----------+------+--------------+',
         ]);
 

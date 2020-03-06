@@ -148,12 +148,36 @@ class DiffService
 
         $this->table->setHeaders($headers);
 
+        $showValues = config('env-diff.show_values');
+
         foreach ($this->diff() as $variable => $containing) {
 
             $row = [$variable];
 
             foreach ($files as $file) {
-                $row[] = $containing[$file] === true ? $this->valueOkay() : $this->valueNotFound();
+
+                $value = null;
+
+                if ( ! $showValues) {
+
+                    $value = $this->valueNotFound();
+
+                    if ($containing[$file] === true) {
+                        $value = $this->valueOkay();
+                    }
+
+                } else {
+
+                    $value = $this->getColoredString('MISSING', 'red');
+
+                    $existing = $this->getData($file)[$variable] ?? null;
+
+                    if ($existing !== null) {
+                        $value = $existing;
+                    }
+                }
+
+                $row[] = $value;
             }
 
             $this->table->addRow($row);

@@ -18,4 +18,9 @@ return [
      * Hide variables that exist in all .env files
      */
     'hide_existing'    => true,
+
+    /*
+     * Show existing env values instead of y/n.
+     */
+    'show_values'      => false,
 ];
