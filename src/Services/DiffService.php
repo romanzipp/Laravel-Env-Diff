@@ -47,7 +47,7 @@ class DiffService
 
             $this->setData(
                 $envFile,
-                Dotenv::createMutable($this->getPath(), $file)->load()
+                Dotenv::createMutable($this->getPath(), $envFile)->load()
             );
         }
     }
