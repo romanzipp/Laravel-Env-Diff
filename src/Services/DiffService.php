@@ -23,22 +23,14 @@ class DiffService
     private $table;
 
     /**
-     * Base path for loading .env files.
-     *
-     * @var string|null
-     */
-    private $path;
-
-    /**
      * Package configuration.
      *
      * @var array
      */
     public $config;
 
-    public function __construct(string $path = null)
+    public function __construct()
     {
-        $this->path = $path;
         $this->config = config('env-diff');
     }
 
@@ -55,9 +47,19 @@ class DiffService
 
             $this->setData(
                 $envFile,
-                Dotenv::createMutable($this->path, $file)->load()
+                Dotenv::createMutable($this->getPath(), $file)->load()
             );
         }
+    }
+
+    /**
+     * Get the base path.
+     *
+     * @return string
+     */
+    private function getPath(): string
+    {
+        return $this->config['path'] ?? app_path();
     }
 
     /**
