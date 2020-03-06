@@ -71,7 +71,11 @@ class DiffService
      */
     public function getData(string $file = null): array
     {
-        return $file === null ? $this->data : ($this->data[$file] ?? []);
+        if ($file === null) {
+            return $this->data;
+        }
+
+        return $this->data[$file] ?? [];
     }
 
     /**
