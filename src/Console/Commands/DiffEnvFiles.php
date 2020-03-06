@@ -12,7 +12,9 @@ class DiffEnvFiles extends Command
      *
      * @var string
      */
-    protected $signature = 'diff:env {files?} {--values : Display existing environment values}';
+    protected $signature = 'diff:env
+                            {files? : Specify environment files, overriding config}
+                            {--values : Display existing environment values}';
 
     /**
      * The console command description.
