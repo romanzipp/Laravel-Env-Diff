@@ -179,11 +179,7 @@ class DiffService
      */
     private function valueOkay(): string
     {
-        if ( ! config('env-diff.use_colors')) {
-            return 'y';
-        }
-
-        return (new Colors)->getColoredString('y', 'green');
+        return $this->getColoredString('Y', 'green');
     }
 
     /**
@@ -193,10 +189,22 @@ class DiffService
      */
     private function valueNotFound(): string
     {
+        return $this->getColoredString('N', 'red');
+    }
+
+    /**
+     * Color a string for shell output if enabled via config.
+     *
+     * @param string $string
+     * @param string $color
+     * @return string
+     */
+    private function getColoredString(string $string, string $color): string
+    {
         if ( ! config('env-diff.use_colors')) {
-            return 'n';
+            return $string;
         }
 
-        return (new Colors)->getColoredString('n', 'red');
+        return (new Colors)->getColoredString($string, $color);
     }
 }
