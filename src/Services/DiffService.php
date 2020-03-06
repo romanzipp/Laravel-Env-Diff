@@ -43,11 +43,12 @@ class DiffService
     {
         $files = is_array($file) ? $file : [$file];
 
-        foreach ($files as $file) {
+        foreach ($files as $envFile) {
 
-            $dotenv = Dotenv::createMutable($this->path, $file);
-
-            $this->setData($file, $dotenv->load());
+            $this->setData(
+                $envFile,
+                Dotenv::createMutable($this->path, $file)->load()
+            );
         }
     }
 
