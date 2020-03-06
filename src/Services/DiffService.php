@@ -179,7 +179,7 @@ class DiffService
             return 'y';
         }
 
-        (new Colors)->getColoredString('y', 'green');
+        return (new Colors)->getColoredString('y', 'green');
     }
 
     /**
@@ -193,6 +193,6 @@ class DiffService
             return 'n';
         }
 
-        (new Colors)->getColoredString('n', 'red');
+        return (new Colors)->getColoredString('n', 'red');
     }
 }
