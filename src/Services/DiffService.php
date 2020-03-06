@@ -45,9 +45,9 @@ class DiffService
 
         foreach ($files as $file) {
 
-            $dotenv = Dotenv::create($this->path, $file);
+            $dotenv = Dotenv::createMutable($this->path, $file);
 
-            $this->setData($file, $dotenv->overload());
+            $this->setData($file, $dotenv->load());
         }
     }
 
