@@ -7,19 +7,29 @@ use romanzipp\EnvDiff\Tests\TestCases\TestCase;
 
 class OutputTest extends TestCase
 {
-    public function testSingleVariableOutput()
+    public function testComparisonSingleMissing()
     {
-        $this->markTestSkipped('TODO');
+        config(['env-diff.use_colors' => false]);
 
-        config(['diff-env.use_colors' => false]);
+        $expect = implode(PHP_EOL, [
+            '+----------+------+--------------+',
+            '| Variable | .env | .env.missing |',
+            '+----------+------+--------------+',
+            '| FOO      | y    | n            |',
+            '+----------+------+--------------+',
+        ]);
 
-        $this->expectOutputString('+----------+------+' . PHP_EOL . '| Variable | .env |' . PHP_EOL . '+----------+------+' . PHP_EOL . '| FOO      | y    |' . PHP_EOL . '+----------+------+');
+        $expect .= PHP_EOL;
+
+        $this->expectOutputString($expect);
 
         $service = new DiffService;
 
         $service->setData('.env', [
             'FOO' => 'bar',
         ]);
+
+        $service->setData('.env.missing', []);
 
         $service->displayTable();
     }
