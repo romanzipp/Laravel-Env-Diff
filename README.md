@@ -64,7 +64,7 @@ return [
 ## Usage
 
 ```
-$ php artisan diff:env
+$ php artisan env:diff
               {files? : Specify environment files, overriding config}
               {--values : Display existing environment values}';
 ```
@@ -72,13 +72,13 @@ $ php artisan diff:env
 ## Example
 
 ```
-$ php artisan diff:env .env,.env.second
+$ php artisan env:diff .env,.env.second
 ```
 
 ![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Env-Diff/master/preview-default.png)
 
 ```
-$ php artisan diff:env .env,.env.second --values
+$ php artisan env:diff .env,.env.second --values
 ```
 
 ![Preview](https://raw.githubusercontent.com/romanzipp/Laravel-Env-Diff/master/preview-values.png)

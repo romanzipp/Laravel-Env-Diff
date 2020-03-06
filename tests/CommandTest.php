@@ -35,7 +35,7 @@ class CommandTest extends TestCase
 
         $this->expectOutputString($expect);
 
-        $this->artisan('diff:env');
+        $this->artisan('env:diff');
     }
 
     public function testCommandWithValues()
@@ -54,7 +54,7 @@ class CommandTest extends TestCase
 
         $this->expectOutputString($expect);
 
-        $this->artisan('diff:env --values');
+        $this->artisan('env:diff --values');
     }
 
     public function testCommandFallbackToDefaultFiles()
@@ -72,7 +72,7 @@ class CommandTest extends TestCase
 
         $this->expectOutputString($expect);
 
-        $this->artisan('diff:env');
+        $this->artisan('env:diff');
     }
 
     public function testCommandWithSpecifiedFile()
@@ -90,7 +90,7 @@ class CommandTest extends TestCase
 
         $this->expectOutputString($expect);
 
-        $this->artisan('diff:env .env.second');
+        $this->artisan('env:diff .env.second');
     }
 
     public function testCommandWithMultipleSpecifiedFiles()
@@ -111,6 +111,6 @@ class CommandTest extends TestCase
 
         $this->expectOutputString($expect);
 
-        $this->artisan('diff:env .env,.env.second');
+        $this->artisan('env:diff .env,.env.second');
     }
 }
