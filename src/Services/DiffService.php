@@ -3,7 +3,8 @@
 namespace romanzipp\EnvDiff\Services;
 
 use Dotenv\Dotenv;
-use LucidFrame\Console\ConsoleTable;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Wujunze\Colors;
 
 class DiffService
@@ -18,9 +19,14 @@ class DiffService
     /**
      * Console table.
      *
-     * @var ConsoleTable|null
+     * @var Table|null
      */
     private $table;
+
+    /**
+     * @var \Symfony\Component\Console\Output\OutputInterface
+     */
+    private $output;
 
     /**
      * Package configuration.
@@ -32,6 +38,10 @@ class DiffService
     public function __construct()
     {
         $this->config = config('env-diff');
+
+        $this->table = new Table(
+            $this->output = new BufferedOutput
+        );
     }
 
     /**
@@ -139,15 +149,10 @@ class DiffService
     /**
      * Build table.
      *
-     * @return ConsoleTable
+     * @return void
      */
-    public function buildTable(): ConsoleTable
+    public function buildTable(): void
     {
-        $this->table = new ConsoleTable;
-
-        $this->table->setPadding(1);
-        $this->table->setIndent(0);
-
         $files = array_keys($this->data);
 
         $headers = ['Variable'];
@@ -192,8 +197,6 @@ class DiffService
 
             $this->table->addRow($row);
         }
-
-        return $this->table;
     }
 
     /**
@@ -203,7 +206,11 @@ class DiffService
      */
     public function displayTable(): void
     {
-        $this->buildTable()->display();
+        $this->buildTable();
+
+        $this->table->render();
+
+        echo $this->output->fetch();
     }
 
     /**

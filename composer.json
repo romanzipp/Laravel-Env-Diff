@@ -14,7 +14,7 @@
         "php": "^7.2",
         "illuminate/console": "^5.5|^6.0|^7.0",
         "illuminate/support": "^5.5|^6.0|^7.0",
-        "phplucidframe/console-table": "^1.2.4",
+        "symfony/console": "^4.0|^5.0",
         "wujunze/php-cli-color": "^2.4",
         "vlucas/phpdotenv": "^4.0"
     },

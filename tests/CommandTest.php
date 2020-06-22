@@ -12,7 +12,7 @@ class CommandTest extends TestCase
 
         config([
             'env-diff.use_colors' => false,
-            'env-diff.files'      => [
+            'env-diff.files' => [
                 '.env',
                 '.env.second',
             ],
@@ -65,7 +65,6 @@ class CommandTest extends TestCase
             '+----------+------+',
             '| Variable | .env |',
             '+----------+------+',
-            '+----------+------+',
         ]);
 
         $expect .= PHP_EOL;
@@ -82,7 +81,6 @@ class CommandTest extends TestCase
         $expect = implode(PHP_EOL, [
             '+----------+-------------+',
             '| Variable | .env.second |',
-            '+----------+-------------+',
             '+----------+-------------+',
         ]);
 
