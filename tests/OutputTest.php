@@ -28,7 +28,7 @@ class OutputTest extends TestCase
 
         $this->expectOutputString($expect);
 
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'FOO' => 'bar',
@@ -55,7 +55,7 @@ class OutputTest extends TestCase
 
         $this->expectOutputString($expect);
 
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'FOO' => 'bar',

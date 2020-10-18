@@ -9,7 +9,7 @@ class DiffTest extends TestCase
 {
     public function testSingleFileEmptyVariables()
     {
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', []);
 
@@ -18,7 +18,7 @@ class DiffTest extends TestCase
 
     public function testMultipleFilesEmptyVariables()
     {
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', []);
 
@@ -31,7 +31,7 @@ class DiffTest extends TestCase
     {
         config(['env-diff.hide_existing' => false]);
 
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'FOO' => 'bar',
@@ -48,7 +48,7 @@ class DiffTest extends TestCase
     {
         config(['env-diff.hide_existing' => false]);
 
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'FOO' => 'bar',
@@ -67,7 +67,7 @@ class DiffTest extends TestCase
 
     public function testMultipleFilesOneMissing()
     {
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'FOO' => 'bar',
@@ -77,7 +77,7 @@ class DiffTest extends TestCase
 
         $this->assertEquals([
             'FOO' => [
-                '.env'         => true,
+                '.env' => true,
                 '.env.testing' => false,
             ],
         ], $service->diff());
@@ -85,7 +85,7 @@ class DiffTest extends TestCase
 
     public function testMultipleFilesNotCorrespondingAtAll()
     {
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'FOO' => 'bar',
@@ -97,11 +97,11 @@ class DiffTest extends TestCase
 
         $this->assertEquals([
             'FOO' => [
-                '.env'         => true,
+                '.env' => true,
                 '.env.testing' => false,
             ],
             'BAR' => [
-                '.env'         => false,
+                '.env' => false,
                 '.env.testing' => true,
             ],
         ], $service->diff());
@@ -109,11 +109,11 @@ class DiffTest extends TestCase
 
     public function testMultipleFilesAllExisting()
     {
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'NOPE' => true,
-            'FOO'  => 'bar',
+            'FOO' => 'bar',
         ]);
 
         $service->setData('.env.testing', [
@@ -122,7 +122,7 @@ class DiffTest extends TestCase
 
         $this->assertEquals([
             'NOPE' => [
-                '.env'         => true,
+                '.env' => true,
                 '.env.testing' => false,
             ],
         ], $service->diff());
@@ -132,11 +132,11 @@ class DiffTest extends TestCase
     {
         config(['env-diff.hide_existing' => false]);
 
-        $service = new DiffService;
+        $service = new DiffService();
 
         $service->setData('.env', [
             'NOPE' => true,
-            'FOO'  => 'bar',
+            'FOO' => 'bar',
         ]);
 
         $service->setData('.env.testing', [
@@ -145,11 +145,11 @@ class DiffTest extends TestCase
 
         $this->assertEquals([
             'NOPE' => [
-                '.env'         => true,
+                '.env' => true,
                 '.env.testing' => false,
             ],
-            'FOO'  => [
-                '.env'         => true,
+            'FOO' => [
+                '.env' => true,
                 '.env.testing' => true,
             ],
         ], $service->diff());

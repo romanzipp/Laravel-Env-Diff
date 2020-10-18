@@ -33,7 +33,8 @@ class EnvDiffProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/../config/env-diff.php', 'env-diff'
+            dirname(__DIR__) . '/../config/env-diff.php',
+            'env-diff'
         );
     }
 }

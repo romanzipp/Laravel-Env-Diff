@@ -40,7 +40,7 @@ class DiffService
         $this->config = config('env-diff');
 
         $this->table = new Table(
-            $this->output = new BufferedOutput
+            $this->output = new BufferedOutput()
         );
     }
 
@@ -54,7 +54,6 @@ class DiffService
         $files = is_array($file) ? $file : [$file];
 
         foreach ($files as $envFile) {
-
             $this->setData(
                 $envFile,
                 Dotenv::createMutable($this->getPath(), $envFile)->load()
@@ -91,7 +90,7 @@ class DiffService
      */
     public function getData(string $file = null): array
     {
-        if ($file === null) {
+        if (null === $file) {
             return $this->data;
         }
 
@@ -108,9 +107,7 @@ class DiffService
         $variables = [];
 
         foreach ($this->data as $file => $vars) {
-
             foreach ($vars as $key => $value) {
-
                 if (in_array($key, $variables, false)) {
                     continue;
                 }
@@ -124,7 +121,6 @@ class DiffService
         $diff = [];
 
         foreach ($variables as $variable) {
-
             $containing = [];
 
             foreach ($this->data as $file => $vars) {
@@ -132,10 +128,9 @@ class DiffService
             }
 
             if ($hideExisting) {
-
                 $unique = array_unique(array_values($containing));
 
-                if (count($unique) === 1 && $unique[0] === true) {
+                if (1 === count($unique) && true === $unique[0]) {
                     continue;
                 }
             }
@@ -166,28 +161,23 @@ class DiffService
         $showValues = $this->config['show_values'] ?? false;
 
         foreach ($this->diff() as $variable => $containing) {
-
             $row = [$variable];
 
             foreach ($files as $file) {
-
                 $value = null;
 
                 if ( ! $showValues) {
-
                     $value = $this->valueNotFound();
 
-                    if ($containing[$file] === true) {
+                    if (true === $containing[$file]) {
                         $value = $this->valueOkay();
                     }
-
                 } else {
-
                     $value = $this->getColoredString('MISSING', 'red');
 
                     $existing = $this->getData($file)[$variable] ?? null;
 
-                    if ($existing !== null) {
+                    if (null !== $existing) {
                         $value = $existing;
                     }
                 }
@@ -246,6 +236,6 @@ class DiffService
             return $string;
         }
 
-        return (new Colors)->getColoredString($string, $color);
+        return (new Colors())->getColoredString($string, $color);
     }
 }

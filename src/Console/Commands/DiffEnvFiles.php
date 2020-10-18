@@ -36,9 +36,9 @@ class DiffEnvFiles extends Command
             $files = explode(',', $overrideFiles);
         }
 
-        $service = new DiffService;
+        $service = new DiffService();
 
-        if ($this->option('values') === true) {
+        if (true === $this->option('values')) {
             $service->config['show_values'] = true;
         }
 
