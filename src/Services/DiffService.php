@@ -86,6 +86,7 @@ class DiffService
      * Get data.
      *
      * @param string|null $file
+     *
      * @return array
      */
     public function getData(string $file = null): array
@@ -228,6 +229,7 @@ class DiffService
      *
      * @param string $string
      * @param string $color
+     *
      * @return string
      */
     private function getColoredString(string $string, string $color): string
