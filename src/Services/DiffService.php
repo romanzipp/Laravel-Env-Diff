@@ -12,7 +12,7 @@ class DiffService
     /**
      * File & env variables.
      *
-     * @var array
+     * @var array<string, array<string, mixed>>
      */
     private $data;
 
@@ -24,14 +24,14 @@ class DiffService
     private $table;
 
     /**
-     * @var \Symfony\Component\Console\Output\OutputInterface
+     * @var \Symfony\Component\Console\Output\BufferedOutput
      */
     private $output;
 
     /**
      * Package configuration.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     public $config;
 
@@ -47,7 +47,7 @@ class DiffService
     /**
      * Add a new .env file and store the loaded data.
      *
-     * @param string|array $file File name/s
+     * @param string|string[] $file File name/s
      */
     public function add($file): void
     {
@@ -75,7 +75,7 @@ class DiffService
      * Manually set variable data corresponding to file name.
      *
      * @param string $file
-     * @param array $data
+     * @param array<string, mixed> $data
      */
     public function setData(string $file, array $data): void
     {
@@ -87,7 +87,7 @@ class DiffService
      *
      * @param string|null $file
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getData(string $file = null): array
     {
@@ -101,7 +101,7 @@ class DiffService
     /**
      * Create a diff of all registered env variables.
      *
-     * @return array
+     * @return array<string, array<string, bool>>
      */
     public function diff(): array
     {
