@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/romanzipp/laravel-env-diff.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-env-diff)
 [![Total Downloads](https://img.shields.io/packagist/dt/romanzipp/laravel-env-diff.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-env-diff)
 [![License](https://img.shields.io/packagist/l/romanzipp/laravel-env-diff.svg?style=flat-square)](https://packagist.org/packages/romanzipp/laravel-env-diff)
-[![GitHub Build Status](https://img.shields.io/github/workflow/status/romanzipp/Laravel-Env-Diff/Tests?style=flat-square)](https://github.com/romanzipp/Laravel-Env-Diff/actions)
+[![GitHub Build Status](https://img.shields.io/github/actions/workflow/status/romanzipp/Laravel-Env-Diff/tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/romanzipp/Laravel-Env-Diff/actions)
 
 Create a visual Diff of .env and .env.example files
 
