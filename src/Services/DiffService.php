@@ -89,7 +89,7 @@ class DiffService
      *
      * @return array<string, mixed>
      */
-    public function getData(string $file = null): array
+    public function getData(?string $file = null): array
     {
         if (null === $file) {
             return $this->data;
